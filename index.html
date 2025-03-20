@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+        body {
+            font-family: "Arial", serif;
+            background-color: rgb(5, 0, 20); 
+            color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            background-image: url('Horizon2.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        #profile {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 20px;
+            color: white;
+            z-index: 1;
+            text-align: left;
+        }
+
+        #profile img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+
+        #profile h1 {
+            font-size: 2.5rem;
+            margin: 10px 0;
+        }
+
+        #profile p {
+            font-size: 1.2rem;
+            margin: 5px 0;
+            color: #ccc;
+        }
+
+        section {
+            padding: 10px 20px;
+            text-align: left;
+            position: relative;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2rem;
+            color: rgb(255, 255, 255);
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: darkred;
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        h1:hover::after {
+            width: 100%;
+        }
+
+        /* Style for the Wave GIF in About Me section */
+        .section-title-gif {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 13.5%; /* Adjust the position of the waving GIF */
+            margin-left: 10px; /* Add space between the title and the GIF */
+            width: 70px;
+            height: auto;
+        }
+
+        section:hover .section-title-gif {
+            display: block;
+        }
+
+        /* Style for the SpongeBob GIF in Projects section */
+        .spongebob-gif {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 12%; /* Position the SpongeBob GIF to the right of the title */
+            margin-left: 10px; /* Space between the title and GIF */
+            width: 75px; /* Adjust the size of the GIF */
+            height: auto;
+        }
+
+        #projects:hover .spongebob-gif {
+            display: block; /* Display the SpongeBob GIF on hover */
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #e0e0e0;
+        }
+
+        #about p {
+            color: lightgray;
+        }
+
+        #projects {
+            background: transparent;
+            padding: 20px 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 30px;
+            padding: 20px 0;
+        }
+
+        .project {
+            width: 300px;
+            height: 250px;
+            margin: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .project img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.5s ease;
+        }
+
+        .project::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.4);
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 1;
+        }
+
+        .project:hover::after {
+            opacity: 1;
+        }
+
+        .project:nth-child(1):hover::after {
+            background-image: url('Midra.png');
+        }
+
+        .project:nth-child(2):hover::after {
+            background-image: url('Knight.png');
+        }
+
+        .project:nth-child(3):hover::after {
+            background-image: url('Hacker.jpg');
+        }
+
+        .content {
+            padding: 20px;
+            background-color: transparent;
+            color: pink;
+            height: 100%;
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            transform: translateY(100%);
+            opacity: 0;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .project:hover .content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .content h3 {
+            margin: 0;
+            font-size: 22px;
+            color: White;
+        }
+
+        .content p {
+            font-size: 16px;
+            margin-top: 10px;
+            color: white;
+        }
+
+        .project-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 15px;
+            background-color: #0066cc;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+
+        .project-link:hover {
+            background-color: #005bb5;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Profile Section -->
+    <section id="profile">
+        <img src="Car3.jpg" alt="Profile Picture">
+        <div>
+            <h1>Dandreb B. Altavano</h1>
+            <p>A student of Golden Link College</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h1>About Me:</h1>
+        <img src="Wave2.gif" alt="Hover GIF" class="section-title-gif">
+        <p>HELLO!!! My name is Dandreb B. Altavano, I am a student of Golden Link College for 10-11 years. I am 15 years old and I am currently on the ninth grade.</p> <p>As of the moment I don't have any occupations cause im still too young to work. I consider myself an above average student because I don't struggle as much in terms of academics. It is rare for me to get a failing grade but it is also rare for me to get an A in my grade card. And also be able to keep up with other students in class, and sometimes even compete on friendly rivalries on who gets the highest score in our subjects.</p> <p>Speaking of subjects, my dominant subject is Mathematics. It is also the subject where me and my classmates or my closest friends compete on, on who gets the highest score on our seatworks, assignments, summatives, and exams. Mathematics is the subject that I shine on,Because I understand it better than literary subjects like English or Filipino. It is very hard for me to understand words as I somewhat lack comprehension. And also sometimes in my eyes words disappear or shift from places making it really hard to read or understand. So I struggle alot with those subjects. But I am still able to get passing grades and sometimes high grades in those literary subjects.</p> <p> Even though I am weak on literary subjects I sometimes like to make short and simple poetry on what I am feeling at the moment. As a way of calming myself and expressing myself.</p> <p>I also like watching anime. Some of my favorites are Jujutsu Kaisen, Silent voice, Blue Lock, Tokyo ghoul, Cyberpunk Edgerunners, and many more. I personally recommend you to watch the animes listed here especially the Silent voice and Cyberpunk Edgerunners. I also like stories with something tragic on it and somewhat dark. Like Tokyo ghoul, Goodnight Punpun, 3 days of happiness, etc. </p>
+
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h1>Projects:</h1>
+        <img src="Spongebob2.gif" alt="SpongeBob GIF" class="spongebob-gif">
+        <div class="container">
+            <div class="project">
+                <img src="Weblog.png" alt="Project 1">
+                <div class="content">
+                    <p>A weblog about me, the creator, contains information like my hobbies and many more.</p>
+                    <a href="https://dannyalt1.github.io/Weblog/" class="project-link" target="_blank">View on GitHub</a>
+                </div>
+            </div>
+            <div class="project">
+                <img src="Declamation.png" alt="Project 2">
+                <div class="content">
+                    <p>A short weblog about my experience of our school's 2025 Declamation Program.</p>
+                    <a href="https://dannyalt1.github.io/Declamation/" class="project-link" target="_blank">View on GitHub</a>
+                </div>
+            </div>
+            <div class="project">
+                <img src="Hacker.jpg" alt="Project 3">
+                <div class="content">
+                    <p>Work in Progress</p>
+                    <a href="https://dannyalt1.github.io/Weblog/" class="project-link" target="_blank">View on GitHub</a>
+                </div>
+            </div>
+            <div class="project">
+                <img src="Hacker.jpg" alt="Project 4">
+                <div class="content">
+                    <p>Work in Progress</p>
+                    <a href="https://dannyalt1.github.io/Weblog/" class="project-link" target="_blank">View on GitHub</a>
+                </div>
+            </div>
+            <div class="project">
+                <img src="Hacker.jpg" alt="Project 5">
+                <div class="content">
+                    <p>Work in Progress</p>
+                    <a href="https://dannyalt1.github.io/Weblog/" class="project-link" target="_blank">View on GitHub</a>
+                </div>
+            </div>
+            <div class="project">
+                <img src="Hacker.jpg" alt="Project 6">
+                <div class="content">
+                    <p>Work in Progress</p>
+                    <a href="https://dannyalt1.github.io/Weblog/" class="project-link" target="_blank">View on GitHub</a>
+                </div>
+            </div>
+            <div class="project">
+                <img src="Hacker.jpg" alt="Project 7">
+                <div class="content">
+                    <p>Work in Progress</p>
+                    <a href="https://dannyalt1.github.io/Weblog/" class="project-link" target="_blank">View on GitHub</a>
+                </div>
+            </div>
+            <div class="project">
+                <img src="Hacker.jpg" alt="Project 8">
+                <div class="content">
+                    <p>Work in Progress</p>
+                    <a href="https://dannyalt1.github.io/Weblog/" class="project-link" target="_blank">View on GitHub</a>
+                </div>
+            </div>
+            <div class="project">
+                <img src="Hacker.jpg" alt="Project 9">
+                <div class="content">
+                    <p>Work in Progress</p>
+                    <a href="https://dannyalt1.github.io/Weblog/" class="project-link" target="_blank">View on GitHub</a>
+                </div>
+            </div>
+            <div class="project">
+                <img src="Hacker.jpg" alt="Project 10">
+                <div class="content">
+                    <p>Work in Progress</p>
+                    <a href="https://dannyalt1.github.io/Weblog/" class="project-link" target="_blank">View on GitHub</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 My Portfolio. (Dandreb B, Altavano) </p>
+    </footer>
+
+</body>
+</html>
